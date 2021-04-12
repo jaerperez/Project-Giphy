@@ -5,7 +5,7 @@ let resultsgiphy = document.querySelector('.results');
 let lupa = document.getElementById('glass');
 let searchitem = document.querySelector('.gifs');
 let containerresultgiphy = document.querySelector('.containerresults');
-
+let buttonseemore=document.querySelector('.myButton')
 
 
 //The words are searched for endpoint autocomplete
@@ -51,11 +51,12 @@ search.addEventListener('change', funsearch);
 
 
 //endpoint Search Giphys 
-
+let count='12';
 async function searchword(e) {
-    const endpoint = 'https://api.giphy.com/v1/gifs/search?api_key=' + apiKey + '&q=' + e + '&limit=12&offset=0';
-    const resp = await fetch(endpoint);
+    const endpointsearch = 'https://api.giphy.com/v1/gifs/search?api_key=' + apiKey + '&q=' + e + '&limit='+count+'&offset=0';
+    const resp = await fetch(endpointsearch);
     const data = await resp.json();
+    console.log(data);
     return data;
 }
 
@@ -114,11 +115,9 @@ function searchitemglass() {
         });
         resultsgiphy.append(...allitems);
         //button 
-        let nodobutton = document.createElement('a');
-        nodobutton.textContent = 'Ver más';
-        nodobutton.classList.add('myButton');
-        containerresultgiphy.appendChild(nodobutton);
+        buttonseemore.style.display="block";
         suggestions.innerHTML = "";
+        count=count*2;
     })
 
 
@@ -127,14 +126,20 @@ function searchitemglass() {
 }
 
 lupa.addEventListener('click', searchitemglass);
-
+buttonseemore.addEventListener('click',searchitemglass);
 //===================Fin search giphy=======================================================//
 
 
 //Endpoint trending
-async function searchword(e) {
-    const endpoint = 'https://api.giphy.com/v1/gifs/search?api_key=' + apiKey + '&q=' + e + '&limit=8&offset=0';
-    const resp = await fetch(endpoint);
+async function searchtrending(e) {
+    const endpointtren = 'https://api.giphy.com/v1/gifs/trending?api_key=' + apiKey +'&limit=8&offset=0';
+    const resp = await fetch(endpointtren);
     const data = await resp.json();
     return data;
 }
+
+
+
+
+
+
