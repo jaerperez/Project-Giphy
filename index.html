@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,22 +10,28 @@
     <link rel="stylesheet" href="./CSS/style.css">
     <title>Project Giphy</title>
 </head>
+
 <body>
     <header></header>
     <main>
         <div class="container"></div>
         <form class="search-form">
-            <input type="text" class="search" id="search" placeholder="Search Gifs" autocomplete="off" value="">
-            <img id="glass" src="../assets/icon-search.svg" alt="">
-            <ul class="suggestions"></ul>
-          </form>
+            <div class="inputsearch">
+                <img id="glass" src="../assets/icon-search.svg" alt="">
+                <input type="text" class="search" id="search" placeholder="Search Gifs" autocomplete="off" value="">
+                <ul class="suggestions"></ul>
+            </div>
+        </form>
         <div class="containerresults">
             <lu class="results"></lu>
             <a href="#" class="myButton">ver más</a>
         </div>
         <div class="popup"></div>
-        <div class="trending"></div>
+        <div class="containertrending">
+            <lu class="trending"></lu>
+        </div>
     </main>
     <script src="./JS/app.js"></script>
 </body>
+
 </html>

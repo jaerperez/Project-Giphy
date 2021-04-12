@@ -5,7 +5,9 @@ let resultsgiphy = document.querySelector('.results');
 let lupa = document.getElementById('glass');
 let searchitem = document.querySelector('.gifs');
 let containerresultgiphy = document.querySelector('.containerresults');
-let buttonseemore=document.querySelector('.myButton')
+let buttonseemore = document.querySelector('.myButton')
+
+let containertreding=document.querySelector('.trending');
 
 
 //The words are searched for endpoint autocomplete
@@ -51,9 +53,9 @@ search.addEventListener('change', funsearch);
 
 
 //endpoint Search Giphys 
-let count='12';
+let count = '12';
 async function searchword(e) {
-    const endpointsearch = 'https://api.giphy.com/v1/gifs/search?api_key=' + apiKey + '&q=' + e + '&limit='+count+'&offset=0';
+    const endpointsearch = 'https://api.giphy.com/v1/gifs/search?api_key=' + apiKey + '&q=' + e + '&limit=' + count + '&offset=0';
     const resp = await fetch(endpointsearch);
     const data = await resp.json();
     console.log(data);
@@ -109,15 +111,14 @@ function searchitemglass() {
             // nodo.appendChild(nodoicoz);
             // nodo.appendChild(nododivuser);
             // nodo.appendChild(nododivtitle);
-
             allitems.push(nodo);
             console.log(allitems);
         });
         resultsgiphy.append(...allitems);
         //button 
-        buttonseemore.style.display="block";
+        buttonseemore.style.display = "block";
         suggestions.innerHTML = "";
-        count=count*2;
+        count = count * 2;
     })
 
 
@@ -126,17 +127,45 @@ function searchitemglass() {
 }
 
 lupa.addEventListener('click', searchitemglass);
-buttonseemore.addEventListener('click',searchitemglass);
+buttonseemore.addEventListener('click', searchitemglass);
 //===================Fin search giphy=======================================================//
 
 
 //Endpoint trending
 async function searchtrending(e) {
-    const endpointtren = 'https://api.giphy.com/v1/gifs/trending?api_key=' + apiKey +'&limit=8&offset=0';
+    const endpointtren = 'https://api.giphy.com/v1/gifs/trending?api_key=' + apiKey + '&limit=4&offset=0';
     const resp = await fetch(endpointtren);
     const data = await resp.json();
     return data;
 }
+
+function searchitemtrending() {
+    let word = search.value;
+    console.log(word);
+    let sword = searchtrending(word);
+    sword.then(response => {
+        const allitems = [];
+        response.data.forEach(element => {
+            console.log(response);
+            //li content giphy 
+            let nodo = document.createElement('li');
+            //img 
+            let nodoimg = document.createElement('img');
+            nodoimg.setAttribute('src', element.images.original.url);
+            nodo.appendChild(nodoimg);
+            allitems.push(nodo);
+            console.log(allitems);
+    });
+    containertreding.append(...allitems);
+ })
+}
+
+//carga los productos 
+addEventListener('loadstart', searchitemtrending());
+
+
+
+
 
 
 

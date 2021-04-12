@@ -9,8 +9,8 @@ html {
     box-sizing: inherit;
   }
   input {
-    width: 100%;
-    padding:20px;
+
+    padding:6px;
   }
 
   .search-form {
@@ -20,6 +20,12 @@ html {
     border-radius: 50px;
   }
 
+  .inputsearch{
+    display: block;
+    background-color: white;
+  }
+
+
   input.search {
     margin: 0;
     text-align: left;
@@ -28,7 +34,8 @@ html {
     position: relative;
     z-index: 2;
     font-size: 16px;
-    padding-left: 71px;
+    top: -11px;
+    left: -4px;
   }
 
   .fas{
@@ -98,10 +105,9 @@ html {
 
 
   #glass{
-      position: absolute;
-      top: 69px;
-    left: 506px;
-      z-index: 2;
+      z-index: 1;
+      padding-left: 18px;
+      margin: 10px;
   }
 
   #user{
@@ -124,8 +130,7 @@ html {
     display: inline-flex;
     width: 260px;
     height: 200px;
-    margin: 5px;
-    
+    margin: 5px;  
 }
 
 .results li img{
@@ -173,3 +178,20 @@ html {
 	top:1px;
 }
 
+/*Fin section search*/
+
+/*Sections trending*/
+.trending li{
+  list-style: none;
+  display: inline-flex;
+  width: 260px;
+  height: 200px;
+  margin: 5px;  
+}
+
+.trending li img{
+  width: 260px;
+  height: 200px;
+  position: relative;
+    left: 0;
+}
