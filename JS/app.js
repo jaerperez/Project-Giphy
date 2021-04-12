@@ -1,7 +1,14 @@
 const apiKey = 'EapKeNprg8BFJKA8UTk19tF73ar1hmk6';
 let search = document.getElementById('search');
 let suggestions = document.querySelector('.suggestions');
+let resultsgiphy = document.querySelector('.results');
+let lupa = document.getElementById('glass');
+let searchitem = document.querySelector('.gifs');
+let containerresultgiphy = document.querySelector('.containerresults');
 
+
+
+//The words are searched for endpoint autocomplete
 async function suggest(e) {
     const endpoint = 'https://api.giphy.com/v1/gifs/search/tags?api_key=' + apiKey + '&q=' + e + '&limit=8&offset=0';
     const resp = await fetch(endpoint);
@@ -17,13 +24,18 @@ function funsearch(e) {
         let info = suggest(e.target.value);
         info.then(response => {
             const allitems = [];
-            suggestions.innerHTML="";
+            suggestions.innerHTML = "";
             response.data.forEach(element => {
                 let nodo = document.createElement('li');
+                let nodoico = document.createElement('img');
+                nodoico.setAttribute('src', '../assets/icon-search.svg');
+                nodoico.setAttribute('class', 'fas');
                 let nodospan = document.createElement('p');
                 nodospan.classList.add('gifs');
                 nodospan.innerHTML = element.name;
+                nodo.appendChild(nodoico);
                 nodo.appendChild(nodospan);
+
                 allitems.push(nodo);
                 console.log(allitems);
             });
@@ -34,3 +46,95 @@ function funsearch(e) {
 
 search.addEventListener('keyup', funsearch);
 search.addEventListener('change', funsearch);
+
+//==================================Autocomplete finish===================================
+
+
+//endpoint Search Giphys 
+
+async function searchword(e) {
+    const endpoint = 'https://api.giphy.com/v1/gifs/search?api_key=' + apiKey + '&q=' + e + '&limit=12&offset=0';
+    const resp = await fetch(endpoint);
+    const data = await resp.json();
+    return data;
+}
+
+function searchitemglass() {
+    let word = search.value;
+    console.log(word);
+    let sword = searchword(word);
+    sword.then(response => {
+        const allitems = [];
+        resultsgiphy.innerHTML = "";
+        response.data.forEach(element => {
+            console.log(response);
+            //li content giphy 
+            let nodo = document.createElement('li');
+            //img 
+            let nodoimg = document.createElement('img');
+            nodoimg.setAttribute('src', element.images.original.url);
+            // icon favorite 
+            // let nodoicof = document.createElement('img');
+            // nodoicof.setAttribute('src', '../assets/icon-fav-hover.svg');
+            // nodoicof.setAttribute('id', 'favorite');
+            // icon download 
+            // let nodoicod = document.createElement('img');
+            // nodoicod.setAttribute('src', '../assets/icon-download-hover.svg');
+            // nodoicod.setAttribute('id', 'download');
+            // icon zoom 
+            // let nodoicoz = document.createElement('img');
+            // nodoicoz.setAttribute('src', '../assets/icon-max-hover.svg');
+            // nodoicoz.setAttribute('id', 'zoom');
+            //div - username
+            // let nododivuser=document.createElement('div');
+            // nododivuser.setAttribute('id','userd');
+            // usarname  
+            // let nodouser=document.createElement('p');
+            // nodouser.setAttribute('id','user');
+            // nodouser.textContent=element.username;
+            //div - title giphy 
+            // let nododivtitle=document.createElement('div');
+            // nododivtitle.setAttribute('id','named');
+            //title giphy
+            // let nodotitle=document.createElement('p');
+            // nodotitle.setAttribute('id','name');
+            // nodotitle.textContent=element.title;
+
+            // nododivtitle.appendChild(nodotitle);
+            // nododivuser.appendChild(nodouser);
+            nodo.appendChild(nodoimg);
+            // nodo.appendChild(nodoicof);
+            // nodo.appendChild(nodoicod);
+            // nodo.appendChild(nodoicoz);
+            // nodo.appendChild(nododivuser);
+            // nodo.appendChild(nododivtitle);
+
+            allitems.push(nodo);
+            console.log(allitems);
+        });
+        resultsgiphy.append(...allitems);
+        //button 
+        let nodobutton = document.createElement('a');
+        nodobutton.textContent = 'Ver más';
+        nodobutton.classList.add('myButton');
+        containerresultgiphy.appendChild(nodobutton);
+        suggestions.innerHTML = "";
+    })
+
+
+
+
+}
+
+lupa.addEventListener('click', searchitemglass);
+
+//===================Fin search giphy=======================================================//
+
+
+//Endpoint trending
+async function searchword(e) {
+    const endpoint = 'https://api.giphy.com/v1/gifs/search?api_key=' + apiKey + '&q=' + e + '&limit=8&offset=0';
+    const resp = await fetch(endpoint);
+    const data = await resp.json();
+    return data;
+}
