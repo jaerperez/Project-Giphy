@@ -5,9 +5,9 @@ let resultsgiphy = document.querySelector('.results');
 let lupa = document.getElementById('glass');
 let searchitem = document.querySelector('.gifs');
 let containerresultgiphy = document.querySelector('.containerresults');
-let buttonseemore = document.querySelector('.myButton')
-
-let containertreding=document.querySelector('.trending');
+let buttonseemore = document.querySelector('.myButton');
+let searchzoom = document.querySelector('.fas');
+let containertreding = document.querySelector('.trending');
 
 
 //The words are searched for endpoint autocomplete
@@ -61,6 +61,8 @@ async function searchword(e) {
     console.log(data);
     return data;
 }
+
+
 
 function searchitemglass() {
     let word = search.value;
@@ -140,9 +142,6 @@ async function searchtrending(e) {
 }
 
 function searchitemtrending() {
-    let word = search.value;
-    console.log(word);
-    let sword = searchtrending(word);
     sword.then(response => {
         const allitems = [];
         response.data.forEach(element => {
@@ -155,17 +154,47 @@ function searchitemtrending() {
             nodo.appendChild(nodoimg);
             allitems.push(nodo);
             console.log(allitems);
-    });
-    containertreding.append(...allitems);
- })
+        });
+        containertreding.append(...allitems);
+    })
 }
 
 //carga los productos 
 addEventListener('loadstart', searchitemtrending());
 
+searchzoom.addEventListener('click',searchitemglassuges);
 
 
 
+function searchitemglassuges() {
+    let word = searchitem.value;
+    console.log(word);
+    let sword = searchword(word);
+    sword.then(response => {
+        const allitems = [];
+        resultsgiphy.innerHTML = "";
+        response.data.forEach(element => {
+            console.log(response);
+            //li content giphy 
+            let nodo = document.createElement('li');
+            //img 
+            let nodoimg = document.createElement('img');
+            nodoimg.setAttribute('src', element.images.original.url);
+            nodo.appendChild(nodoimg);
+            allitems.push(nodo);
+            console.log(allitems);
+        });
+        resultsgiphy.append(...allitems);
+        //button 
+        buttonseemore.style.display = "block";
+        suggestions.innerHTML = "";
+        count = count * 2;
+    })
+
+
+
+
+}
 
 
 
