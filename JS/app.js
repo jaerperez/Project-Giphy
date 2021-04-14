@@ -3,11 +3,16 @@ let search = document.getElementById('search');
 let suggestions = document.querySelector('.suggestions');
 let resultsgiphy = document.querySelector('.results');
 let lupa = document.getElementById('glass');
-let searchitem = document.querySelector('.gifs');
 let containerresultgiphy = document.querySelector('.containerresults');
 let buttonseemore = document.querySelector('.myButton');
-let searchzoom = document.querySelector('.fas');
 let containertreding = document.querySelector('.trending');
+
+
+//corresponde a la lupa 
+let searchitemsugges = document.querySelector('.fas'); //img glass 
+let searchitem = document.querySelector('.gifs');//name of giphy
+
+
 
 
 //The words are searched for endpoint autocomplete
@@ -37,7 +42,6 @@ function funsearch(e) {
                 nodospan.innerHTML = element.name;
                 nodo.appendChild(nodoico);
                 nodo.appendChild(nodospan);
-
                 allitems.push(nodo);
                 console.log(allitems);
             });
@@ -122,10 +126,6 @@ function searchitemglass() {
         suggestions.innerHTML = "";
         count = count * 2;
     })
-
-
-
-
 }
 
 lupa.addEventListener('click', searchitemglass);
@@ -134,14 +134,16 @@ buttonseemore.addEventListener('click', searchitemglass);
 
 
 //Endpoint trending
-async function searchtrending(e) {
-    const endpointtren = 'https://api.giphy.com/v1/gifs/trending?api_key=' + apiKey + '&limit=4&offset=0';
+async function searchtrending() {
+    const endpointtren = 'https://api.giphy.com/v1/gifs/trending?api_key=EapKeNprg8BFJKA8UTk19tF73ar1hmk6&limit=4&offset=0';
     const resp = await fetch(endpointtren);
     const data = await resp.json();
+    console.log(data);
     return data;
 }
 
 function searchitemtrending() {
+    let sword = searchtrending;
     sword.then(response => {
         const allitems = [];
         response.data.forEach(element => {
@@ -159,18 +161,12 @@ function searchitemtrending() {
     })
 }
 
-//carga los productos 
-addEventListener('loadstart', searchitemtrending());
+//
 
-searchzoom.addEventListener('click',searchitemglassuges);
-
-
-
-function searchitemglassuges() {
+function look() {
     let word = searchitem.value;
-    console.log(word);
-    let sword = searchword(word);
-    sword.then(response => {
+    let w= searchword(word);
+    w.then(response => {
         const allitems = [];
         resultsgiphy.innerHTML = "";
         response.data.forEach(element => {
@@ -188,15 +184,12 @@ function searchitemglassuges() {
         //button 
         buttonseemore.style.display = "block";
         suggestions.innerHTML = "";
-        count = count * 2;
-    })
-
-
-
-
+    });
 }
 
+searchitemsugges.addEventListener('click',look);
 
+addEventListener('loadstart', searchitemtrending);
 
 
 
