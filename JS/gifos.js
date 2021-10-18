@@ -5,6 +5,7 @@ const icon1 = document.getElementById('icon-input0');
 const icon2 = document.getElementById('icon-input2');
 const glassearch = document.querySelector('.icon-input2');
 const resultsgiphy = document.querySelector('.results-list');
+const resultsgiphyrec = document.querySelector('.trending-list');
 const buttonseemore = document.querySelector('.myButton');
 const resultspopup = document.querySelector('.modal-content');
 const giphymax = document.querySelector('.gif-popup-div');
@@ -15,7 +16,7 @@ const giphymax = document.querySelector('.gif-popup-div');
 
 //==================endpoint gifos===================================================
 let count = 12;
-async function searchword(e, point) {
+async function endpointgiphy(e, point) {
     let endpointselect = "";
     switch (point) {
         case 1:
@@ -25,6 +26,10 @@ async function searchword(e, point) {
         case 2:
             const endpoint2 = 'https://api.giphy.com/v1/gifs/search?api_key=' + apiKey + '&q=' + e + '&limit=' + count + '&offset=0';
             endpointselect = endpoint2;
+            break
+        case 3:
+            const endpoint3 = 'https://api.giphy.com/v1/gifs/trending?api_key=' + apiKey + '&limit=12';
+            endpointselect = endpoint3;
             break
         default:
             console.log('option incorrect');
@@ -47,7 +52,7 @@ function funsearch(e) {
         icon2.setAttribute('class', 'icon-input1');
         icon1.setAttribute('class', 'icon-input2');
 
-        let info = searchword(e.target.value, 1);
+        let info = endpointgiphy(e.target.value, 1);
         let i = 0;
         info.then(response => {
             const allitems = [];
@@ -94,19 +99,21 @@ search.addEventListener('keyup', funsearch);
 
 
 //======================Search Gifos===============================================================================
-
+const allitems = []; //main search items 
 function searchmain() {
     let word = search.value;
     resultsgiphy.innerHTML = "";
-    searchgiphys(word);
+    searchgiphys(word,2,allitems,resultsgiphy);
+    //button 
+    buttonseemore.style.display = "block";
+    suggestions.innerHTML = "";
+    count = count * 2;
 }
 
-const allitems = [];
-
-function searchgiphys(sgiphy) {
-    let sword = searchword(sgiphy, 2);
+function searchgiphys(sgiphy,numendpoint,array,nodoprincipal) {
+    let sword = endpointgiphy(sgiphy, numendpoint);
     sword.then(response => {
-        allitems.length = 0;
+        array.length = 0;
         let i = 0;
         response.data.forEach(element => {
             i++;
@@ -128,7 +135,7 @@ function searchgiphys(sgiphy) {
             optionfav.setAttribute('value', '0');
             const idelement = 'gif-option-fav-' + i;
             optionfav.addEventListener('click', () => {
-                checkFavs(element, optionfav,idelement);
+                checkFavs(element, optionfav, idelement);
             });
 
             //option download
@@ -184,13 +191,9 @@ function searchgiphys(sgiphy) {
             nodo.appendChild(nodohover);
             nodo.appendChild(nodoimg);
 
-            allitems.push(nodo);
+            array.push(nodo);
         });
-        resultsgiphy.append(...allitems);
-        //button 
-        buttonseemore.style.display = "block";
-        suggestions.innerHTML = "";
-        count = count * 2;
+        nodoprincipal.append(...array);
     })
 }
 
@@ -257,8 +260,8 @@ function popup(elementpop, id) {
     markFromFavs(gif_json.images.original.url, optionfavmax);//Mark the favorites
     const idelement = 'gif-option-fav-mx' + id;
     optionfavmax.addEventListener('click', () => {
-        checkFavs(gif_json, optionfavmax,idelement);
-        
+        checkFavs(gif_json, optionfavmax, idelement);
+
     });
 
     //option download
@@ -319,11 +322,9 @@ function markFromFavs(urlfav, node) {
 
 
 
-function checkFavs(elementpop, node,e) {
-    const date=document.getElementById(e).value;
-
+function checkFavs(elementpop, node, e) {
+    const date = document.getElementById(e).value;
     let list_favorites2 = JSON.parse(localStorage.getItem("favs-id"));
-    //let json_giphy = JSON.parse(elementpop);
     if (date === 0) {
         newfavs(elementpop, node);
     } else {
@@ -334,7 +335,6 @@ function checkFavs(elementpop, node,e) {
 
 
 function newfavs(elementfav, node) {
-    //let this_gif_string = JSON.stringify(elementfav);
     List_fav.push(elementfav);
     let stringified = JSON.stringify(List_fav);
     localStorage.clear();
@@ -352,7 +352,7 @@ function addfavs(list, elementfav, node) {
             localStorage.setItem("favs-id", JSON.stringify(list));
             node.setAttribute('class', 'gif-option-fav');
             node.setAttribute('value', '0');
-        } 
+        }
     }
 }
 
@@ -368,5 +368,21 @@ function checkForAddedFavs() {
 }
 checkForAddedFavs();
 
+//================== Recommended trending giphys=========================================
+const allitemsre = []; //recommended items 
 
+function giphytrendings() {
+    searchgiphys("N/A",3,allitemsre,resultsgiphyrec);
+}
 
+giphytrendings();
+
+let btn_slide_left = document.getElementById("slide-btn-left");
+let btn_slide_right = document.getElementById("slide-btn-right");
+btn_slide_right.addEventListener('click', () => {
+    resultsgiphyrec.scrollBy({left: 500, behavior: 'smooth'});
+});
+
+btn_slide_left.addEventListener('click', () => {
+    resultsgiphyrec.scrollBy({left: -500, behavior: 'smooth'});
+});
