@@ -5,59 +5,98 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="./CSS/main.css">
-    <title>Project Giphy</title>
+    <title>GIFOS</title>
 </head>
 
 <body>
     <header>
         <nav>
-            <ul class="nav-right-section">
-                <li><a href="">Gmail</a></li>
-                <li><a href="">Imágenes</a></li>
-                <li class="menu-icon"><a href=""></a></li>
-                <li><a href=""><img
-                            src="https://lh3.googleusercontent.com/ogw/ADGmqu9OQUD5jJtFNBifIoerdT1pX3DXgJtRq34eSAWAqQ=s64-c-mo"
-                            alt=""></a></li>
-            </ul>
+            <img alt="logo" class="logo" />
+            <div class="menu-right">
+                <div class="menu">
+                    <input class="menu_input  menu_input-anim" type="checkbox" id="checkbox">
+                    <span class="menu_input_span menu_input_span-anim"></span>
+                    <span class="menu_input_span menu_input_span-anim"></span>
+                    <span class="menu_input_span menu_input_span-anim"></span>
+                    <ul>
+                        <li><a href="">Modo Nocturno</a><br>
+                            <div class="linese"></div>
+                        </li>
+                        <li><a href="">Favoritos</a><br>
+                            <div class="linese"></div>
+                        </li>
+                        <li><a href="">Mis GIFOS</a><br>
+                            <div class="linese"></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="menu-icon"><a href=""></a></div>
+            </div>
         </nav>
     </header>
     <main>
-        <div class="container"></div>
-        <form class="search-form">
-            <div class="inputsearch">
-                <img id="glass" src="../assets/icon-search.svg" alt="">
-                <input type="text" class="search" id="search" placeholder="Search Gifs" autocomplete="off" value="">
-                <lu class="suggestions"></lu>
+        <section class="main-logo">
+            <h1 class="title-p">Inspírate, busca, guarda, y crea los mejores <span class="title-s">GIFOS</span></h1>
+            <div class="logo"><img>
             </div>
-        </form>
-        <div class="containerresults">
-            <div class="results"></div>
-            <a href="#" class="myButton">ver más</a>
-        </div>
-        <div class="containertrending">
-            <lu class="trending"></lu>
-        </div>
-
+        </section>
+        <section class="main-input">
+            <div class="main-input-container">
+                <div class="main-input-search" id="main-input-search">
+                    <div class="icon-input0" id="icon-input0"><a></a></div>
+                    <input type="text" class="search" id="search" placeholder="Busca GIFOS y más" autocomplete="off">
+                    <div class="icon-input2" id="icon-input2"><a></a></div>
+                </div>
+                <div class="main-input-suggest" id="main-input-suggest">
+                    <ul class="input-suggestions" id="input-suggestions"></ul>
+                </div>
+            </div>
+            <div class="main-title">
+                <h1>Trending</h1>
+                <h3>Reactions, Entertaiment, Sports, Stickers, Artists</h3>
+            </div>
+        </section>
+        <section class="main-results">
+            <div class="results-list"></div>
+            <div class="content-button">
+                <a class="myButton" hidden>ver más</a>
+            </div>
+        </section>
+        <section class="main-trending">
+            <div class="trending-title">
+                <h1>Trending GIFOS</h1>
+                <h3>Mira los últimos GIFO de nuestra comunidad</h3>
+            </div>
+            <div class="slider">
+                <img class="slide-btn-left" id="slide-btn-left" src="assets/button-slider-left.svg" alt="slide left">
+                <div class="trending-list" id="trending-list" ></div>
+                <img class="slide-btn-right" id="slide-btn-right" src="assets/button-slider-right.svg" alt="slide right">
+            </div>
+        </section>
         <div id="modal" class="modal">
             <div id="modal-content" class="modal-content">
-                <div class="dir-back">
-                    <a href="#" class="back" onclick="nextslide(-1)">&#10094;</a>
-                </div>
-                <div id="modal-card" class="modal-card">
-                    <img id="modal-card-img" class="modal-card-img" >
-                    
-                </div>
-                <div class="dir-next">
-                    <a href="#" class="next" onclick="nextslide(1)">&#10095;</a>
-                </div>
             </div>
         </div>
-
     </main>
-    <script src="./JS/app.js"></script>
+    <footer>
+        <ul class="footer-left">
+            <p>Compartir en:</p>
+            <ul>
+                <li><i class="fab fa-facebook"></i></li>
+                <li><i class="fab fa-twitter"></i></li>
+                <li><i class="fab fa-instagram"></i></li>
+            </ul>
+        </ul>
+        <ul class="footer-right">
+            <p>© GIFOS 2020 All Rights Reserved.</p>
+        </ul>
+    </footer>
+
+
+    <script src="./JS/gifos.js"></script>
 </body>
 
 </html>

@@ -401,6 +401,13 @@ main .main-input input{
     cursor: pointer;
 }
 
+.main-title-fav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+}
+
 @media screen and (max-width: 700px){
     
     
@@ -675,13 +682,41 @@ main .main-input input{
       
   }
 
+  @media screen and (max-width: 700px){
+    .gif-popup-img-content{
+        width: 318px;
+        height: 245px;
+        margin-top: 6%;
+    }
+    .popup-namecont{
+        position: relative;
+        width: 173px;
+        left: -74px;
+        height: auto;
+    }
+    .gif-popup-option{
+        position: relative;
+        top: 4px;
+        left: 100px;
+        display: flex;
+      }
+
+    .slide-btn-left{
+      display: none;
+    }
+
+    .slide-btn-right{
+        display: none;
+    }
+  }
+
 
 /*main result end------------------------------------------------*/
 
 
 /*main trending------------------------------------------------*/
 .main-trending{
-    height: 640px;
+    height: 500px;
     width: 100%;
     background-color: #F3F5F8 ;
 }
@@ -712,7 +747,7 @@ main .main-input input{
     display: grid;
     grid-auto-flow: column;
     width: 1127px;
-    margin: 16px;
+    margin: 5px;
     overflow: hidden;
 }
 
@@ -734,11 +769,15 @@ main .main-input input{
     }
     .trending-list{
         display: -webkit-box;
-        display: -ms-flexbox;
+        /*display: -ms-flexbox;*/
         margin-top: 32px;
-        margin-bottom: 82px;
-        overflow: hidden;
+        margin-bottom: 36px;
+        overflow: scroll;
       }
+
+      ::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 
@@ -866,4 +905,27 @@ footer .footer-right p{
 .logo2{
     margin: 1%;
     margin-top: 361px;
+}
+
+
+/*=================================Page Favorites===================================*/
+
+.main-fav{
+   margin-top: 119px;
+}
+
+.icon-heart{
+    background-image: url(../assets/icon-favoritos-heart.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 25px; 
+    height: 25px;
+}
+
+
+.results-fav-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }

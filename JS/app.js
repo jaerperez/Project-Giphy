@@ -74,28 +74,6 @@ function searchmain() {
     searchgiphys(word);
 }
 
-/*function searchminor() {
-    var tab = [];
-    // add values to the array
-    for (var i = 0; i < search_item.length; i++) {
-        tab.push(search_item[i].childNodes[1].innerHTML);
-    }
-    // get selected element index
-    for (var i = 0; i < search_item.length; i++) {
-        //name of giphy
-        search_item[i].childNodes[1].addEventListener('click', Event => {
-            searchgiphys(this.innerHTML);
-        });
-
-    };
-
-    //let e = suggestions.querySelector('li').getAttribute('id');
-    //let searchitem = rute[index].childNodes[1].innerText; //name of giphy
-    //console.log('Mira aquí lo que devuelve javier! ' + w);
-    resultsgiphy.innerHTML = "";
-
-}*/
-
 const allitems = [];
 
 function searchgiphys(sgiphy) {

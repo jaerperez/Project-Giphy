@@ -9,6 +9,7 @@ const resultsgiphyrec = document.querySelector('.trending-list');
 const buttonseemore = document.querySelector('.myButton');
 const resultspopup = document.querySelector('.modal-content');
 const giphymax = document.querySelector('.gif-popup-div');
+const favlist=document.querySelector('.results-fav-list');
 
 
 
@@ -91,9 +92,9 @@ function copywordsuggest() {
 }
 
 
-
-search.addEventListener('keyup', funsearch);
-//search.addEventListener('change', funsearch);
+if(search!=null){
+    search.addEventListener('keyup', funsearch);
+}
 
 //======================Autocomplete finish========================================================================
 
@@ -110,6 +111,7 @@ function searchmain() {
     count = count * 2;
 }
 
+
 function searchgiphys(sgiphy,numendpoint,array,nodoprincipal) {
     let sword = endpointgiphy(sgiphy, numendpoint);
     sword.then(response => {
@@ -117,87 +119,97 @@ function searchgiphys(sgiphy,numendpoint,array,nodoprincipal) {
         let i = 0;
         response.data.forEach(element => {
             i++;
-            //Content giphy 
-            let nodo = document.createElement('div');
-            nodo.setAttribute('class', 'gif-result')
-            //contect hover 
-            let nodohover = document.createElement('div');
-            nodohover.setAttribute('class', 'gif-result-hover')
-
-            //Options hover, favorite, max and download
-            let nodooption = document.createElement('lu');
-            nodooption.setAttribute('class', 'gif-result-option');
-
-            //Option favorite 
-            let optionfav = document.createElement('li');
-            optionfav.setAttribute('class', 'gif-option-fav');
-            optionfav.setAttribute('id', 'gif-option-fav-' + i);
-            optionfav.setAttribute('value', '0');
-            const idelement = 'gif-option-fav-' + i;
-            optionfav.addEventListener('click', () => {
-                checkFavs(element, optionfav, idelement);
-            });
-
-            //option download
-            let optiondow = document.createElement('li');
-            optiondow.setAttribute('class', 'gif-option-dow');
-
-            //create hipervinculo
-            let optiondowurl = document.createElement('a');
-            optiondowurl.setAttribute('class', 'url');
-            let href = createBlob(element.images.original.url);
-            href.then(url => { optiondowurl.setAttribute("href", url); });
-            optiondowurl.setAttribute('download', 'descargagifo');
-
-            //link image
-
-            let optionurllink = document.createElement('div');
-            optionurllink.setAttribute('class', 'gif-option-dow-link');
-
-            //Option Max 
-            let optionmax = document.createElement('li');
-            optionmax.setAttribute('class', 'gif-option-max');
-            optionmax.addEventListener('click', () => {
-                let this_gif_string = JSON.stringify(element);
-                popup(this_gif_string, i);
-                window.scrollTo(0, 0);
-            })
-
-            //Content user name
-            let name = document.createElement('div');
-            name.setAttribute('class', 'namecont');
-            let nametitle = document.createElement('p');
-            nametitle.innerHTML = "User";
-            let namegif = document.createElement('p');
-            namegif.setAttribute('class', 'name-gif');
-            namegif.innerHTML = element.title;
-            name.appendChild(nametitle);
-            name.appendChild(namegif);
-
-
-            //Gif 
-            let nodoimg = document.createElement('img');
-            nodoimg.setAttribute('src', element.images.original.url);
-            nodoimg.setAttribute('class', 'gif-img');
-
-            optiondowurl.appendChild(optionurllink);
-            optiondow.appendChild(optiondowurl);
-            nodooption.appendChild(optionfav);
-            nodooption.appendChild(optiondow);
-            nodooption.appendChild(optionmax);
-            nodohover.appendChild(nodooption);
-            nodohover.appendChild(name);
-
-            nodo.appendChild(nodohover);
-            nodo.appendChild(nodoimg);
-
-            array.push(nodo);
+            cardsgiphy(i,array,element);
         });
         nodoprincipal.append(...array);
     })
 }
 
-glassearch.addEventListener('click', searchmain);
+
+function cardsgiphy(i,array,element){
+    //Content giphy 
+    let nodo = document.createElement('div');
+    nodo.setAttribute('class', 'gif-result')
+    //contect hover 
+    let nodohover = document.createElement('div');
+    nodohover.setAttribute('class', 'gif-result-hover')
+
+    //Options hover, favorite, max and download
+    let nodooption = document.createElement('lu');
+    nodooption.setAttribute('class', 'gif-result-option');
+
+    //Option favorite 
+    let optionfav = document.createElement('li');
+    optionfav.setAttribute('class', 'gif-option-fav');
+    optionfav.setAttribute('id', 'gif-option-fav-' + i);
+    optionfav.setAttribute('value', '0');
+    const idelement = 'gif-option-fav-' + i;
+    optionfav.addEventListener('click', () => {
+        checkFavs(element, optionfav, idelement);
+    });
+
+    //option download
+    let optiondow = document.createElement('li');
+    optiondow.setAttribute('class', 'gif-option-dow');
+
+    //create hipervinculo
+    let optiondowurl = document.createElement('a');
+    optiondowurl.setAttribute('class', 'url');
+    let href = createBlob(element.images.original.url);
+    href.then(url => { optiondowurl.setAttribute("href", url); });
+    optiondowurl.setAttribute('download', 'descargagifo');
+
+    //link image
+
+    let optionurllink = document.createElement('div');
+    optionurllink.setAttribute('class', 'gif-option-dow-link');
+
+    //Option Max 
+    let optionmax = document.createElement('li');
+    optionmax.setAttribute('class', 'gif-option-max');
+    optionmax.addEventListener('click', () => {
+        let this_gif_string = JSON.stringify(element);
+        popup(this_gif_string, i);
+        window.scrollTo(0, 0);
+    })
+
+    //Content user name
+    let name = document.createElement('div');
+    name.setAttribute('class', 'namecont');
+    let nametitle = document.createElement('p');
+    nametitle.innerHTML = "User";
+    let namegif = document.createElement('p');
+    namegif.setAttribute('class', 'name-gif');
+    namegif.innerHTML = element.title;
+    name.appendChild(nametitle);
+    name.appendChild(namegif);
+
+
+    //Gif 
+    let nodoimg = document.createElement('img');
+    nodoimg.setAttribute('src', element.images.original.url);
+    nodoimg.setAttribute('class', 'gif-img');
+
+    optiondowurl.appendChild(optionurllink);
+    optiondow.appendChild(optiondowurl);
+    nodooption.appendChild(optionfav);
+    nodooption.appendChild(optiondow);
+    nodooption.appendChild(optionmax);
+    nodohover.appendChild(nodooption);
+    nodohover.appendChild(name);
+
+    nodo.appendChild(nodohover);
+    nodo.appendChild(nodoimg);
+    array.push(nodo);
+}
+
+
+
+
+if(glassearch!=null){
+   glassearch.addEventListener('click', searchmain);
+}
+
 buttonseemore.addEventListener('click', searchmain);
 //searchitemsugges.addEventListener('click', searchminor);
 
@@ -261,7 +273,6 @@ function popup(elementpop, id) {
     const idelement = 'gif-option-fav-mx' + id;
     optionfavmax.addEventListener('click', () => {
         checkFavs(gif_json, optionfavmax, idelement);
-
     });
 
     //option download
@@ -381,8 +392,43 @@ let btn_slide_left = document.getElementById("slide-btn-left");
 let btn_slide_right = document.getElementById("slide-btn-right");
 btn_slide_right.addEventListener('click', () => {
     resultsgiphyrec.scrollBy({left: 500, behavior: 'smooth'});
+    btn_slide_right.setAttribute('src','../assets/button-slider-right-hover.svg');
+    btn_slide_left.setAttribute('src','../assets/button-slider-left.svg');
 });
 
 btn_slide_left.addEventListener('click', () => {
     resultsgiphyrec.scrollBy({left: -500, behavior: 'smooth'});
+    btn_slide_right.setAttribute('src','../assets/button-slider-right.svg');
+    btn_slide_left.setAttribute('src','../assets/button-slider-left-hover.svg');
 });
+
+//===================Page my favorites=====================//
+
+
+const allitemsfav=[];// all items show in favorites 
+
+function showfavlist(){
+    let list_fav3 = JSON.parse(localStorage.getItem("favs-id"));
+    if(list_fav3!==null){
+        allitemsfav.length=0;
+        let i = 0;
+        list_fav3.forEach(element => {
+            i++;
+            cardsgiphy(i,allitemsfav,element);
+        });
+        favlist.append(...allitemsfav);
+        markfav();
+    }
+}
+
+function markfav(){
+    for (let i = 1; i < allitemsfav.length+1; i++) {
+        let elementfavorite=document.getElementById('gif-option-fav-'+i);
+        elementfavorite.setAttribute('class', 'gif-option-fav-selec');
+        elementfavorite.setAttribute('value', '1');
+        }
+}
+
+addEventListener('DOMContentLoaded',showfavlist());
+
+

@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <title>GIFOS</title>
+    <title>FAVORITOS</title>
 </head>
-
 <body>
     <header>
         <nav>
@@ -38,29 +37,14 @@
         </nav>
     </header>
     <main>
-        <section class="main-logo">
-            <h1 class="title-p">Inspírate, busca, guarda, y crea los mejores <span class="title-s">GIFOS</span></h1>
-            <div class="logo"><img>
+        <section class="main-fav">
+            <div class="main-title-fav">
+                <img class="icon-heart" alt="">
+                <h3>Favoritos</h3>
             </div>
         </section>
-        <section class="main-input">
-            <div class="main-input-container">
-                <div class="main-input-search" id="main-input-search">
-                    <div class="icon-input0" id="icon-input0"><a></a></div>
-                    <input type="text" class="search" id="search" placeholder="Busca GIFOS y más" autocomplete="off">
-                    <div class="icon-input2" id="icon-input2"><a></a></div>
-                </div>
-                <div class="main-input-suggest" id="main-input-suggest">
-                    <ul class="input-suggestions" id="input-suggestions"></ul>
-                </div>
-            </div>
-            <div class="main-title">
-                <h1>Trending</h1>
-                <h3>Reactions, Entertaiment, Sports, Stickers, Artists</h3>
-            </div>
-        </section>
-        <section class="main-results">
-            <div class="results-list"></div>
+        <section class="main-results-fav">
+            <div class="results-fav-list"></div>
             <div class="content-button">
                 <a class="myButton" hidden>ver más</a>
             </div>
@@ -71,9 +55,9 @@
                 <h3>Mira los últimos GIFO de nuestra comunidad</h3>
             </div>
             <div class="slider">
-                <img id="slide-btn-left" src="assets/button-slider-left.svg" alt="slide left">
+                <img class="slide-btn-left" id="slide-btn-left" src="assets/button-slider-left.svg" alt="slide left">
                 <div class="trending-list" id="trending-list" ></div>
-                <img id="slide-btn-right" src="assets/button-slider-right.svg" alt="slide right">
+                <img class="slide-btn-right" id="slide-btn-right" src="assets/button-slider-right.svg" alt="slide right">
             </div>
         </section>
         <div id="modal" class="modal">
