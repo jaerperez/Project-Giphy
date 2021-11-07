@@ -148,7 +148,13 @@ header {
       display: none;
   }
 
- 
+  .botto-record{
+      width: 56px;
+      height: 56px;
+      /*background-color: black;*/
+      position: absolute;
+      z-index: 4;
+  }
 
 
 
@@ -833,81 +839,6 @@ footer .footer-right p{
 /*footer responsive============================================*/
 
 
-/*footer fin---------------------------------------------------*/
-
-
-/*recording----------------------------------------------------*/
-
-.main-create{
-    height: 700px;
-    display: inline-flex;
-}
-
-.main-recording{
-    height: 500px;
-    width: 688px;
-}
-
-.logo1{
-    margin: 13%;
-}
-
-.box-create{
-    height: 390px;
-    width: 688px; 
-    border:1px solid #572EE5 ;
-}
-
-.box-create .title-p{
-    text-align: center;
-}
-
-.main-recording .video{
-    margin: 6% auto;
-    display: block;
-    width: 480px;
-    height: 265px;
-}
-
-
-.main-recording ul {
-
-    margin: 10px 20px 10px 34%;
-    display: inline-flex;
-}
-
-.main-recording ul li{
-    text-align: center;
-    height: 32px;
-    width: 32px;
-    border-radius: 100px;
-    border: 1px solid #572EE5;
-    margin: 10px;
-    
-}
-
-.line{
-    border-radius: 25px;
-    background-color: #572EE5;
-    border: 2px solid #572EE5;
-}
-
-.button-start{
-    height: 50px;
-    width: 127px;
-    border-radius: 25px;
-    margin: 12px 288px;
-    cursor: pointer;
-
-
-}
-
-.logo2{
-    margin: 1%;
-    margin-top: 361px;
-}
-
-
 /*=================================Page Favorites===================================*/
 
 .main-fav{
@@ -929,3 +860,261 @@ footer .footer-right p{
     flex-wrap: wrap;
     justify-content: center;
 }
+
+/*=================================Page Mis GIFOS===================================*/
+
+.icon-mis-gifos{
+    background-image: url(../assets/icon-mis-gifos.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 25px; 
+    height: 25px;
+}
+
+
+.results-my-fav-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gif-option-delet{
+    background-image: url('../assets/icon-trash-normal.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+  .gif-option-delet:hover{
+    background-image: url('../assets/icon-trash-hover.svg');
+  }
+
+/*=================================Page RECORD===================================*/
+
+
+.body{
+    overflow-x: hidden; 
+}
+
+.main-create{
+    height: 700px;
+    width: 100%;
+    margin-top: 12%;
+    display: inline-flex;   
+}
+
+.main-recording{
+    height: 500px;
+    width: 688px;
+}
+
+.logo1{
+    margin: 10%;
+}
+
+.box-create{
+    position: relative;
+    height: 390px;
+    width: 688px; 
+    border:1px solid #572EE5 ;
+}
+
+.box-create .title-p{
+    text-align: center;
+    margin-top: 23px;
+    top: 114px;
+    left: 110px;
+    position: absolute;
+    width: 469px;
+}
+
+.title-s3{
+    text-align: center;
+    margin-top: 23px;
+    font-size: 13px;
+    color: black;
+    font-family: 'Montserrat-Medium';
+    
+}
+
+.main-recording .video{
+    margin: 10% auto;
+    display: block;
+    width: 480px;
+    height: 265px;
+}
+
+
+.main-recording ul {
+
+    margin: 10px 20px 10px 34%;
+    display: inline-flex;
+}
+
+.steps li{
+    text-align: center;
+    height: 32px;
+    width: 32px;
+    border-radius: 100px;
+    border: 1px solid #572EE5;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+
+.line{
+    border-radius: 25px;
+    width: 723px;
+    position: relative;
+    left: -3%;
+    background-color: #572EE5;
+    border: 2px solid #572EE5;
+}
+
+.button-start{
+    height: 50px;
+    width: 127px;
+    border-radius: 25px;
+    margin: 12px 288px;
+    cursor: pointer;
+}
+
+.logo2{
+    margin: 1%;
+    margin-top: 397px;
+}
+
+.logo2 img{
+    width: 129px;
+    height: 86px;
+}
+
+.gif-waiting-hover{
+    background-color: #562ee596;
+    width: 480px;
+    height: 265px;
+    position: relative;
+    top: -334px;
+    /* left: 39.6%; */
+    margin: 6% auto;
+    /* right: 10px; */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gif-img-waiting{
+    background-image: url('../assets/loader.svg');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: contain;
+    width: 22px;
+    height: 22px;
+}
+
+.gif-img-check{
+    background-image: url('../assets/check.svg');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: contain;
+    width: 22px;
+    height: 22px;  
+}
+
+.gif-waiting-hover p{
+    color: rgb(255, 255, 255);
+}
+
+.gif-option-copy{
+    background-image: url('../assets/icon-link-normal.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.gif-option-copy:hover{
+    background-image: url('../assets/icon-link-hover.svg');
+}
+
+
+.gif-create-option{
+    position: relative;
+    top: -91px;
+    left: 106px;
+}
+
+.gif-create-option li{
+
+    width: 32px;
+    height: 32px;
+    margin: 2px;
+    border-radius: 5px;
+    /*display: none;*/
+    z-index: 2;
+}
+
+
+  .topleft {
+    position: absolute;
+    border: 1px solid #FFFFFF;
+    border-top-color: #50E3C2;
+    border-left-color: #50E3C2;
+    top: 0;
+    left: 0;
+    width: 27px;
+    height: 25px;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  
+  .topright {
+    position: absolute;
+    border: 1px solid #FFFFFF;
+    border-top-color: #50E3C2;
+    border-right-color: #50E3C2;
+    top: 0;
+    right: 0;
+    width: 25px;
+    height: 27px;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+  
+  .bottomleft {
+    position: absolute;
+    border: 1px solid #FFFFFF;
+    border-bottom-color: #50E3C2;
+    border-left-color: #50E3C2;
+    bottom: 0;
+    left: 0;
+    width: 25px;
+    height: 27px;
+    margin-left: 21px;
+    margin-bottom: 19px;
+  }
+  
+  .bottomright {
+    position: absolute;
+    border: 1px solid #FFFFFF;
+    border-bottom-color: #50E3C2;
+    border-right-color: #50E3C2;
+    bottom: 0;
+    right: 0;
+    width: 27px;
+    height: 25px;
+    margin-bottom: 19px;
+    margin-right: 20px;
+  }
+
+
+
+

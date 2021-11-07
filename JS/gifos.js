@@ -12,10 +12,7 @@ const giphymax = document.querySelector('.gif-popup-div');
 const favlist=document.querySelector('.results-fav-list');
 
 
-
-
-
-//==================endpoint gifos===================================================
+//==================endpoint gifos=================================================================================
 let count = 12;
 async function endpointgiphy(e, point) {
     let endpointselect = "";
@@ -119,14 +116,14 @@ function searchgiphys(sgiphy,numendpoint,array,nodoprincipal) {
         let i = 0;
         response.data.forEach(element => {
             i++;
-            cardsgiphy(i,array,element);
+            cardsgiphy(i,array,element,element.images.original.url);
         });
         nodoprincipal.append(...array);
     })
 }
 
 
-function cardsgiphy(i,array,element){
+function cardsgiphy(i,array,element,urlGify){
     //Content giphy 
     let nodo = document.createElement('div');
     nodo.setAttribute('class', 'gif-result')
@@ -155,7 +152,7 @@ function cardsgiphy(i,array,element){
     //create hipervinculo
     let optiondowurl = document.createElement('a');
     optiondowurl.setAttribute('class', 'url');
-    let href = createBlob(element.images.original.url);
+    let href = createBlob(urlGify);
     href.then(url => { optiondowurl.setAttribute("href", url); });
     optiondowurl.setAttribute('download', 'descargagifo');
 
@@ -187,7 +184,7 @@ function cardsgiphy(i,array,element){
 
     //Gif 
     let nodoimg = document.createElement('img');
-    nodoimg.setAttribute('src', element.images.original.url);
+    nodoimg.setAttribute('src', urlGify);
     nodoimg.setAttribute('class', 'gif-img');
 
     optiondowurl.appendChild(optionurllink);
@@ -331,8 +328,6 @@ function markFromFavs(urlfav, node) {
     }
 }
 
-
-
 function checkFavs(elementpop, node, e) {
     const date = document.getElementById(e).value;
     let list_favorites2 = JSON.parse(localStorage.getItem("favs-id"));
@@ -342,8 +337,6 @@ function checkFavs(elementpop, node, e) {
         addfavs(list_favorites2, elementpop, node);
     }
 }
-
-
 
 function newfavs(elementfav, node) {
     List_fav.push(elementfav);
@@ -363,6 +356,7 @@ function addfavs(list, elementfav, node) {
             localStorage.setItem("favs-id", JSON.stringify(list));
             node.setAttribute('class', 'gif-option-fav');
             node.setAttribute('value', '0');
+            location.reload();
         }
     }
 }
@@ -414,7 +408,7 @@ function showfavlist(){
         let i = 0;
         list_fav3.forEach(element => {
             i++;
-            cardsgiphy(i,allitemsfav,element);
+            cardsgiphy(i,allitemsfav,element,element.images.original.url);
         });
         favlist.append(...allitemsfav);
         markfav();
@@ -430,5 +424,8 @@ function markfav(){
 }
 
 addEventListener('DOMContentLoaded',showfavlist());
+//===================Page my favorites=====================//
+
+
 
 
