@@ -44,7 +44,7 @@ let recorder;
 function opencamara() {
     eliminarcard('.gif-waiting-hover');
     captureCamera(function (camera) {
-        document.querySelector('h1').innerHTML = 'Waiting for Gif Recorder to start...';
+        //document.querySelector('h1').innerHTML = 'Waiting for Gif Recorder to start...';
        
         recorder = RecordRTC(camera, {
             type: 'gif',
@@ -53,7 +53,7 @@ function opencamara() {
             width: 190,
             hidden: 140,
             onGifRecordingStarted: function () {
-                document.querySelector('h1').innerHTML = 'Gif recording started.';
+               // document.querySelector('h1').innerHTML = 'Gif recording started.';
             },
             onGifPreview: function (gifURL) {
                 video_record.src = gifURL;
@@ -67,7 +67,7 @@ function startRecord() {
     recorder.destroy();
     recorder=null;
     captureCamera(function (camera) {
-        document.querySelector('h1').innerHTML = 'Waiting for Gif Recorder to start...';
+        //document.querySelector('h1').innerHTML = 'Waiting for Gif Recorder to start...';
         recorder = RecordRTC(camera, {
             type: 'gif',
             frameRate: 1,
@@ -75,13 +75,16 @@ function startRecord() {
             width: 190,
             hidden: 140,
             onGifRecordingStarted: function () {
-                document.querySelector('h1').innerHTML = 'Gif recording started.';
+                //document.querySelector('h1').innerHTML = 'Gif recording started.';
             },
             onGifPreview: function (gifURL) {
                 video_record.src = gifURL;
             }
         });
         recorder.startRecording();
+        // Timer
+        dateStarted = new Date().getTime();
+        setTimeout(looper, 1000);
         // release camera on stopRecording
         recorder.camera = camera;
     });
@@ -90,6 +93,7 @@ function startRecord() {
 
 function stopRecord() {
     recorder.stopRecording(stopRecordingCallback);
+    stopTimer();
 }
 
 function UploadGif() {
@@ -132,8 +136,11 @@ function giphycamara() {
     if (status_record == 0) {
         opencamara();
         btnrecord.innerHTML = 'Grabar';
+        document.getElementById("timer").innerHTML='';
         status_record = 1;
         document.querySelector(".title-p").innerHTML = "";
+        checkstep('1',2);
+        checkstep('2',1);
     } else if (status_record == 1) {
         startRecord();
         btnrecord.innerHTML = 'Stop';
@@ -142,10 +149,14 @@ function giphycamara() {
         stopRecord();
         btnrecord.innerHTML = 'Subir';
         status_record = 3;
+        checkstep('2',2);
+        checkstep('3',1);
     } else if(status_record == 3){
         UploadGif();
         btnrecord.innerHTML = 'Finalizar';
         status_record = 0;
+        checkstep('3',2);
+        checkstep('1',1);
         //document.querySelector(".gif-waiting-hover").remove();
 
     }
@@ -233,6 +244,19 @@ function eliminarcard(id){
     }
 }
 
+function checkstep(id,e){
+    let step=document.getElementById(id);
+    switch(e){
+        case 1:
+            step.setAttribute('class','stepselec');
+            break
+        case 2:
+            step.setAttribute('class','step');
+            break
+        default:
+            console.log('option incorrect');
+    }
+}
 
 function copyurl(url){
     const text = document.createElement('textarea');
@@ -241,4 +265,39 @@ function copyurl(url){
     text.select();
     document.execCommand('copy');
     document.body.removeChild(text);
+}
+
+
+// Recorder timer
+function calculateTimeDuration(secs) {
+    var hr = Math.floor(secs / 3600);
+    var min = Math.floor((secs - (hr * 3600)) / 60);
+    var sec = Math.floor(secs - (hr * 3600) - (min * 60));
+    if (min < 10) {
+        min = "0" + min;
+    }
+    if (sec < 10) {
+        sec = "0" + sec;
+    }
+    if(hr <= 0) {
+        hr = "0" + hr;
+    }
+    return hr + ':' + min + ':' + sec;
+};
+
+let timerView = null;
+function looper() {
+    if (!recorder) {
+        return;
+    } else {
+        timerView = setInterval(printTimer,1000);
+    }
+};
+
+function printTimer() {
+    document.getElementById("timer").innerHTML = calculateTimeDuration((new Date().getTime() - dateStarted) / 1000);
+};
+
+function stopTimer() {
+    clearInterval(timerView);
 }

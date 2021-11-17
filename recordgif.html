@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/maindark.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <title>Crear GIFO</title>
 </head>
 
@@ -38,7 +40,7 @@
     <main>
         <section class="main-create">
             <div class="logo1">
-                <img src="../assets/camara.svg" alt="">
+                <div class="camara"></div>
             </div>
             <div class="main-recording">
 
@@ -53,18 +55,18 @@
                     <div class="bottomleft"></div>
                     <div class="bottomright"></div>
                 </div>
-
                 <ul class="steps">
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
+                    <li class="stepselec" id="1">1</li>
+                    <li class="step" id="2">2</li>
+                    <li class="step" id="3">3</li>
+                    <li class="timer" id="timer"></li>
                 </ul>
                 <div class="line"></div>
                 <button class="button-start" id="btn-start">Comenzar</button>
 
             </div>
             <div class="logo2">
-                <img src="../assets/pelicula.svg" alt="">
+                <div class="cinta"></div>
             </div>
 
         </section>
@@ -72,13 +74,15 @@
     </main>
     <footer>
         <ul class="footer-left">
-            <li>Compartir en:</li>
-            <li><a href=""></a></li>
-            <li><a href=""></a></li>
-            <li><a href=""></a></li>
+            <p>Compartir en:</p>
+            <ul>
+                <li><i class="fab fa-facebook"></i></li>
+                <li><i class="fab fa-twitter"></i></li>
+                <li><i class="fab fa-instagram"></i></li>
+            </ul>
         </ul>
         <ul class="footer-right">
-            <li>© GIFOS 2020 All Rights Reserved.</li>
+            <p>© GIFOS 2020 All Rights Reserved.</p>
         </ul>
     </footer>
     <script src="./js/appcreate.js"></script>
