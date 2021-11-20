@@ -143,6 +143,7 @@ header {
     color: #ffffff;
     padding: 16px;
     display: block;
+    cursor: pointer;
   }
 
   .menu-icon{

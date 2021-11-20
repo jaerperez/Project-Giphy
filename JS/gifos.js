@@ -9,7 +9,10 @@ const resultsgiphyrec = document.querySelector('.trending-list');
 const buttonseemore = document.querySelector('.myButton');
 const resultspopup = document.querySelector('.modal-content');
 const giphymax = document.querySelector('.gif-popup-div');
-const favlist=document.querySelector('.results-fav-list');
+const favlist = document.querySelector('.results-fav-list');
+
+
+
 
 
 //==================endpoint gifos=================================================================================
@@ -89,7 +92,7 @@ function copywordsuggest() {
 }
 
 
-if(search!=null){
+if (search != null) {
     search.addEventListener('keyup', funsearch);
 }
 
@@ -101,7 +104,7 @@ const allitems = []; //main search items
 function searchmain() {
     let word = search.value;
     resultsgiphy.innerHTML = "";
-    searchgiphys(word,2,allitems,resultsgiphy);
+    searchgiphys(word, 2, allitems, resultsgiphy);
     //button 
     buttonseemore.style.display = "block";
     suggestions.innerHTML = "";
@@ -109,21 +112,21 @@ function searchmain() {
 }
 
 
-function searchgiphys(sgiphy,numendpoint,array,nodoprincipal) {
+function searchgiphys(sgiphy, numendpoint, array, nodoprincipal) {
     let sword = endpointgiphy(sgiphy, numendpoint);
     sword.then(response => {
         array.length = 0;
         let i = 0;
         response.data.forEach(element => {
             i++;
-            cardsgiphy(i,array,element,element.images.original.url);
+            cardsgiphy(i, array, element, element.images.original.url);
         });
         nodoprincipal.append(...array);
     })
 }
 
 
-function cardsgiphy(i,array,element,urlGify){
+function cardsgiphy(i, array, element, urlGify) {
     //Content giphy 
     let nodo = document.createElement('div');
     nodo.setAttribute('class', 'gif-result')
@@ -203,12 +206,14 @@ function cardsgiphy(i,array,element,urlGify){
 
 
 
-if(glassearch!=null){
-   glassearch.addEventListener('click', searchmain);
+if (glassearch != null) {
+    glassearch.addEventListener('click', searchmain);
 }
 
+if(buttonseemore!=null){
 buttonseemore.addEventListener('click', searchmain);
-//searchitemsugges.addEventListener('click', searchminor);
+}
+
 
 async function createBlob(url) {
     try {
@@ -218,6 +223,84 @@ async function createBlob(url) {
     } catch (error) {
         console.log("ERROR: ", error);
     }
+}
+
+const blackmode = document.querySelector('.dark');
+const blackmodefav = document.querySelector('.darkfav');
+const blackmodemygif = document.querySelector('.darkmygif');//ok 
+const blackmoderecord = document.querySelector('.darkrecord');
+
+const styleIndex = document.querySelector('.styles-index');
+const styleFav = document.querySelector('.styles-fav');
+const styleMygif = document.querySelector('.styles-mygif');//ok
+const styleRecord = document.querySelector('.styles-record');
+
+
+
+let contindex = 0;// ok 
+let contfav = 0;
+let contmisgif = 0;
+let contrecor = 0;
+
+// Función para cambiar la URL del CSS
+function changemodedark(node, num, option) {
+    switch (option) {
+        case 1: //Esta opción es cuando se da clic en la opción modo oscuro
+            switch (num) {
+                case 0:
+                    node.href = "./css/maindark.css";
+                    contindex = 1;
+                    contfav = 1;
+                    contmisgif = 1;
+                    contrecor = 1;
+                    break
+                case 1:
+                    node.href = "./css/main.css";
+                    contindex = 0;
+                    contfav = 0;
+                    contmisgif = 0;
+                    contrecor = 0;
+                    break
+                default:
+                    console.log('error');
+            }
+            break
+        case 2: //Esta opción solo busca que valor actual tiene la página para volverlo oscuro o blanco 
+            switch (num) {
+                case 0:
+                    node.href = "./css/maindark.css";
+                    break
+                case 1:
+                    node.href = "./css/main.css";
+                    break
+                default:
+                    console.log('error');
+            }
+            break
+    }
+}
+
+
+
+if (blackmode != null) {
+    blackmode.addEventListener('click', () => {
+        changemodedark(styleIndex, contindex, 1)
+    });
+}
+if (blackmodefav != null) {
+    blackmodefav.addEventListener('click', () => {
+        changemodedark(styleFav, contfav, 1)
+    });
+}
+if (blackmodemygif != null) {
+    blackmodemygif.addEventListener('click', () => {
+        changemodedark(styleMygif, contmisgif, 1)
+    });
+}
+if (blackmoderecord != null) {
+    blackmoderecord.addEventListener('click', () => {
+        changemodedark(styleRecord, contrecor, 1)
+    });
 }
 
 
@@ -377,7 +460,7 @@ checkForAddedFavs();
 const allitemsre = []; //recommended items 
 
 function giphytrendings() {
-    searchgiphys("N/A",3,allitemsre,resultsgiphyrec);
+    searchgiphys("N/A", 3, allitemsre, resultsgiphyrec);
 }
 
 giphytrendings();
@@ -385,46 +468,18 @@ giphytrendings();
 let btn_slide_left = document.getElementById("slide-btn-left");
 let btn_slide_right = document.getElementById("slide-btn-right");
 btn_slide_right.addEventListener('click', () => {
-    resultsgiphyrec.scrollBy({left: 500, behavior: 'smooth'});
-    btn_slide_right.setAttribute('src','../assets/button-slider-right-hover.svg');
-    btn_slide_left.setAttribute('src','../assets/button-slider-left.svg');
+    resultsgiphyrec.scrollBy({ left: 500, behavior: 'smooth' });
+    btn_slide_right.setAttribute('src', '../assets/button-slider-right-hover.svg');
+    btn_slide_left.setAttribute('src', '../assets/button-slider-left.svg');
 });
 
 btn_slide_left.addEventListener('click', () => {
-    resultsgiphyrec.scrollBy({left: -500, behavior: 'smooth'});
-    btn_slide_right.setAttribute('src','../assets/button-slider-right.svg');
-    btn_slide_left.setAttribute('src','../assets/button-slider-left-hover.svg');
+    resultsgiphyrec.scrollBy({ left: -500, behavior: 'smooth' });
+    btn_slide_right.setAttribute('src', '../assets/button-slider-right.svg');
+    btn_slide_left.setAttribute('src', '../assets/button-slider-left-hover.svg');
 });
 
-//===================Page my favorites=====================//
 
-
-const allitemsfav=[];// all items show in favorites 
-
-function showfavlist(){
-    let list_fav3 = JSON.parse(localStorage.getItem("favs-id"));
-    if(list_fav3!==null){
-        allitemsfav.length=0;
-        let i = 0;
-        list_fav3.forEach(element => {
-            i++;
-            cardsgiphy(i,allitemsfav,element,element.images.original.url);
-        });
-        favlist.append(...allitemsfav);
-        markfav();
-    }
-}
-
-function markfav(){
-    for (let i = 1; i < allitemsfav.length+1; i++) {
-        let elementfavorite=document.getElementById('gif-option-fav-'+i);
-        elementfavorite.setAttribute('class', 'gif-option-fav-selec');
-        elementfavorite.setAttribute('value', '1');
-        }
-}
-
-addEventListener('DOMContentLoaded',showfavlist());
-//===================Page my favorites=====================//
 
 
 

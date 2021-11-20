@@ -142,6 +142,7 @@ header {
     color: #ffffff;
     padding: 16px;
     display: block;
+    cursor: pointer;
   }
 
   .menu-icon{
@@ -1012,6 +1013,23 @@ footer .footer-right p{
 .logo2{
     margin: 1%;
     margin-top: 397px;
+}
+
+.camara {
+    background-image: url(../assets/camara.svg);
+    width: 135px;
+    height: 200px;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.cinta{
+    background-image: url('../assets/pelicula.svg');
+    width: 157px;
+    height: 89px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .logo2 img{

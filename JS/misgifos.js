@@ -22,12 +22,12 @@ addEventListener('DOMContentLoaded',showmyfavlist());
 
 //Change the class of favorites to delete
 function createdelemygify(){
-    for (let i = 1; i < allitemsfav.length; i++) {
+    for (let i = 1; i < allitemsmyfav.length; i++) {
         let mygify=document.getElementById('gif-option-fav-'+i);
         mygify.setAttribute('class', 'gif-option-delet');
         //mygify.removeEventListener('class',)
         mygify.addEventListener('click', () => {
-            deletegifo(allitemsfav, allitemsfav[i]);
+            deletegifo(allitemsmyfav, allitemsmyfav[i]);
         });
         }
 }

@@ -301,3 +301,5 @@ function printTimer() {
 function stopTimer() {
     clearInterval(timerView);
 }
+
+
