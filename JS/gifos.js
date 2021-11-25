@@ -469,14 +469,14 @@ let btn_slide_left = document.getElementById("slide-btn-left");
 let btn_slide_right = document.getElementById("slide-btn-right");
 btn_slide_right.addEventListener('click', () => {
     resultsgiphyrec.scrollBy({ left: 500, behavior: 'smooth' });
-    btn_slide_right.setAttribute('src', '../assets/button-slider-right-hover.svg');
-    btn_slide_left.setAttribute('src', '../assets/button-slider-left.svg');
+    btn_slide_right.setAttribute('src', 'assets/button-slider-right-hover.svg');
+    btn_slide_left.setAttribute('src', 'assets/button-slider-left.svg');
 });
 
 btn_slide_left.addEventListener('click', () => {
     resultsgiphyrec.scrollBy({ left: -500, behavior: 'smooth' });
-    btn_slide_right.setAttribute('src', '../assets/button-slider-right.svg');
-    btn_slide_left.setAttribute('src', '../assets/button-slider-left-hover.svg');
+    btn_slide_right.setAttribute('src', 'assets/button-slider-right.svg');
+    btn_slide_left.setAttribute('src', 'assets/button-slider-left-hover.svg');
 });
 
 
