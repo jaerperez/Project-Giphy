@@ -444,6 +444,9 @@ main .main-input input{
         width: 307px;
 
     }
+    .main-input-search{
+        width: 100%;
+    }
 
     main .main-input input{
         width: 225px;
